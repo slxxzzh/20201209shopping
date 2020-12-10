@@ -577,3 +577,13 @@ hostname: Trayvon
 2020-12-09 21:52:01,336 INFO 3456 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\1208shopping\\server\\app.js"
 2020-12-09 21:52:01,337 INFO 3456 [egg-watcher:agent] watcher start success
 2020-12-09 21:52:01,369 INFO 3456 [egg:core] dump config after ready, 17ms
+2020-12-09 22:09:11,800 INFO 908 [egg:logger] init all loggers with options: {"dir":"C:\\Users\\Administrator\\Desktop\\1208shopping\\server\\logs\\server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"server-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"agent"}
+2020-12-09 22:09:11,829 INFO 908 [egg:core] dump config after load, 20ms
+2020-12-09 22:09:12,220 INFO 908 [egg-watcher] Start watching: ["C:\\Users\\Administrator\\Desktop\\1208shopping\\server\\app","C:\\Users\\Administrator\\Desktop\\1208shopping\\server\\config","C:\\Users\\Administrator\\Desktop\\1208shopping\\server\\mocks","C:\\Users\\Administrator\\Desktop\\1208shopping\\server\\mocks_proxy","C:\\Users\\Administrator\\Desktop\\1208shopping\\server\\app.js"]
+2020-12-09 22:09:12,220 INFO 908 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\1208shopping\\server\\app"
+2020-12-09 22:09:12,222 INFO 908 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\1208shopping\\server\\config"
+2020-12-09 22:09:12,223 INFO 908 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\1208shopping\\server\\mocks"
+2020-12-09 22:09:12,224 INFO 908 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\1208shopping\\server\\mocks_proxy"
+2020-12-09 22:09:12,225 INFO 908 [egg-watcher] Start watching: "C:\\Users\\Administrator\\Desktop\\1208shopping\\server\\app.js"
+2020-12-09 22:09:12,227 INFO 908 [egg-watcher:agent] watcher start success
+2020-12-09 22:09:12,289 INFO 908 [egg:core] dump config after ready, 25ms

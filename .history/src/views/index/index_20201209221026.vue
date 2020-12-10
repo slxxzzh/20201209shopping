@@ -4,11 +4,11 @@
     <div class="wrapper">
       <div class="wrapperContent">
         <!-- 轮播 -->
-        <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+        <!-- <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
           <van-swipe-item v-for="item in slides" :key="item.goodsId">
             <img :src="item.image" alt="" />
           </van-swipe-item>
-        </van-swipe>
+        </van-swipe> -->
         <!-- 商品分类 -->
         <ul class="goodsList">
           <li v-for="item in category" :key="item.mallCategoryId">
@@ -22,22 +22,17 @@
         <div class="recommend">
           <h1>商品推荐</h1>
           <div class="zzzzzzzzz">
-            <div class="recommendUl" :style="{ width: recommendWidth }">
-              <div
-                class="recommendLi"
-                v-for="item in recommend"
-                :key="item.goodsId"
-              >
+            <div class="recommendUl">
+              <div class="recommendLi" v-for="item in recommend" :key="item.goodsId">
                 <img :src="item.image" alt="" />
-                <p>{{ item.goodsName }}</p>
-                <span>￥{{ item.price }}</span
-                ><i>￥{{ item.mallPrice }}</i
-                ><br />
+                <p>{{item.goodsName}}</p>
+                <span>￥{{item.price}}</span><i>￥{{item.mallPrice}}</i><br />
                 <button class="shopping">
                   <van-icon name="shopping-cart-o" />
                 </button>
                 <button>查看详情</button>
               </div>
+            
             </div>
           </div>
         </div>
@@ -68,12 +63,10 @@ export default {
   props: {},
   data() {
     return {
-      recommendWidth: "",
-      recommendBs: null,
       slides: [], // 轮播图数据
       category: [], //商品分类数据
       advertesPicture: -1, // 单张图片地址
-      recommend: [], // 横向滚动的数据
+      recommend:[] // 横向滚动的数据
     };
   },
   components: {
@@ -88,11 +81,7 @@ export default {
           this.slides = res.data.slides;
           this.category = res.data.category;
           this.advertesPicture = res.data.advertesPicture.PICTURE_ADDRESS;
-          this.recommend = res.data.recommend;
-          this.recommendWidth = res.data.recommend.length * 120 + "px";
-          setTimeout(() => {
-            this.recommendBs.refresh();
-          }, 0);
+          this.recommend = res.data.recommend
           console.log(res.data);
         }
       })
@@ -109,7 +98,6 @@ export default {
         scrollY: false,
         click: true,
       });
-      this.recommendBs = bs2;
     });
   },
   computed: {},
@@ -118,7 +106,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.zzzzzzzzz {
+.zzzzzzzzz{
   // height:100px;
   overflow: hidden;
 }
@@ -167,8 +155,9 @@ export default {
     border-bottom: 1px solid #eee;
   }
   .recommendUl {
-    height: 200px;
-    // width: 200%;
+    height: 120px;
+    border: 1px solid red;
+    width: 200%;
     display: flex;
     justify-content: space-between;
     // overflow-x: scroll;
@@ -179,17 +168,15 @@ export default {
       // float: left;
       position: relative;
       box-sizing: border-box;
-      padding: 5px 10px;
+      padding: 5px;
       font-size: 13px;
       text-align: left;
       width: 35%;
       img {
-        display: inline-block;
-        margin: 0 auto;
-        width: 100px;
+        width: 40px;
       }
       p {
-        width: 100px;
+        width: 100%;
         margin: 5px auto;
         overflow: hidden;
         white-space: nowrap;

@@ -4,11 +4,11 @@
     <div class="wrapper">
       <div class="wrapperContent">
         <!-- 轮播 -->
-        <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+        <!-- <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
           <van-swipe-item v-for="item in slides" :key="item.goodsId">
             <img :src="item.image" alt="" />
           </van-swipe-item>
-        </van-swipe>
+        </van-swipe> -->
         <!-- 商品分类 -->
         <ul class="goodsList">
           <li v-for="item in category" :key="item.mallCategoryId">
@@ -90,6 +90,7 @@ export default {
           this.advertesPicture = res.data.advertesPicture.PICTURE_ADDRESS;
           this.recommend = res.data.recommend;
           this.recommendWidth = res.data.recommend.length * 120 + "px";
+          console.log(this.recommendWidth);
           setTimeout(() => {
             this.recommendBs.refresh();
           }, 0);
@@ -168,6 +169,7 @@ export default {
   }
   .recommendUl {
     height: 200px;
+    border: 1px solid red;
     // width: 200%;
     display: flex;
     justify-content: space-between;

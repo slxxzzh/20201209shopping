@@ -4,11 +4,11 @@
     <div class="wrapper">
       <div class="wrapperContent">
         <!-- 轮播 -->
-        <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
+        <!-- <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
           <van-swipe-item v-for="item in slides" :key="item.goodsId">
             <img :src="item.image" alt="" />
           </van-swipe-item>
-        </van-swipe>
+        </van-swipe> -->
         <!-- 商品分类 -->
         <ul class="goodsList">
           <li v-for="item in category" :key="item.mallCategoryId">
@@ -22,7 +22,7 @@
         <div class="recommend">
           <h1>商品推荐</h1>
           <div class="zzzzzzzzz">
-            <div class="recommendUl" :style="{ width: recommendWidth }">
+            <div class="recommendUl" :style="{width:recommendWidth}">
               <div
                 class="recommendLi"
                 v-for="item in recommend"
@@ -68,8 +68,7 @@ export default {
   props: {},
   data() {
     return {
-      recommendWidth: "",
-      recommendBs: null,
+      recommendWidth:"1000px",
       slides: [], // 轮播图数据
       category: [], //商品分类数据
       advertesPicture: -1, // 单张图片地址
@@ -89,10 +88,6 @@ export default {
           this.category = res.data.category;
           this.advertesPicture = res.data.advertesPicture.PICTURE_ADDRESS;
           this.recommend = res.data.recommend;
-          this.recommendWidth = res.data.recommend.length * 120 + "px";
-          setTimeout(() => {
-            this.recommendBs.refresh();
-          }, 0);
           console.log(res.data);
         }
       })
@@ -109,7 +104,6 @@ export default {
         scrollY: false,
         click: true,
       });
-      this.recommendBs = bs2;
     });
   },
   computed: {},
@@ -168,6 +162,7 @@ export default {
   }
   .recommendUl {
     height: 200px;
+    border: 1px solid red;
     // width: 200%;
     display: flex;
     justify-content: space-between;
