@@ -1017,3 +1017,7 @@
 2020-12-12 23:21:46,499 INFO 3032 [egg-security] compose 6 middlewares into one security middleware
 2020-12-12 23:21:46,529 INFO 3032 [egg:core] dump config after load, 10ms
 2020-12-12 23:21:46,536 INFO 3032 [egg-mongoose] starting...
+2020-12-12 23:21:46,638 INFO 3032 [egg-mongoose] mongodb://127.0.0.1/shoppingMall connected successfully
+2020-12-12 23:21:46,650 INFO 3032 [egg-mongoose] instance[0] start successfully
+2020-12-12 23:21:46,653 INFO 3032 [egg-watcher:application] watcher start success
+2020-12-12 23:21:46,680 INFO 3032 [egg:core] dump config after ready, 23ms
