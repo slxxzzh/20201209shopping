@@ -36,4 +36,38 @@ export default {
   classification(id) {
     return http.get(`/classification?mallSubId=${id}`);
   },
+  // 12. 加入购物车(post)
+  // /addShop
+  // 参数:
+  // id:商品的id
+  addShop({ id }) {
+    return http.post("addShop", {
+      id,
+    });
+  },
+  //   4. 查询获取购物车数据(get)
+  // /getCard
+  getCard() {
+    return http.post("getCard");
+  },
+  // 5. 购物车加减商品(post)
+  // /editCart
+  // 参数:
+  // count: 购物车数量
+  // id: 商品id
+  // mallPrice: 价格
+  editCart({ count, id, mallPrice }) {
+    return http.post("editCart", {
+      count,
+      id,
+      mallPrice
+    })
+  },
+  // 6. 购物车商品删除(post)
+  // /deleteShop
+  // 参数: 
+  // id: 商品id(数组)
+  deleteShop(id){
+    return http.post("deleteShop",id)
+  }
 };

@@ -2194,3 +2194,101 @@ hostname: stu23
 pid: 8276
 hostname: stu23
 
+2020-12-12 21:12:27,225 ERROR 7668 [-/127.0.0.1/-/13ms POST /v1/deleteShop] nodejs.CastError: Cast to string failed for value "{}" at path "cid" for model "ShopList"
+    at model.Query.exec (C:\Users\Y20201118\Desktop\shop\20201209shopping\server\node_modules\_mongoose@5.11.6@mongoose\lib\query.js:4358:21)
+    at model.Query.Query.then (C:\Users\Y20201118\Desktop\shop\20201209shopping\server\node_modules\_mongoose@5.11.6@mongoose\lib\query.js:4450:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+messageFormat: undefined
+stringValue: "\"{}\""
+kind: "string"
+value: {}
+path: "cid"
+reason: null
+pid: 7668
+hostname: DESKTOP-I7UBTLB
+
+2020-12-12 21:13:03,599 ERROR 7668 [-/127.0.0.1/-/2ms POST /v1/deleteShop] nodejs.CastError: Cast to string failed for value "{}" at path "cid" for model "ShopList"
+    at model.Query.exec (C:\Users\Y20201118\Desktop\shop\20201209shopping\server\node_modules\_mongoose@5.11.6@mongoose\lib\query.js:4358:21)
+    at model.Query.Query.then (C:\Users\Y20201118\Desktop\shop\20201209shopping\server\node_modules\_mongoose@5.11.6@mongoose\lib\query.js:4450:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+messageFormat: undefined
+stringValue: "\"{}\""
+kind: "string"
+value: {}
+path: "cid"
+reason: null
+pid: 7668
+hostname: DESKTOP-I7UBTLB
+
+2020-12-12 21:13:19,446 ERROR 7668 [-/127.0.0.1/-/2ms POST /v1/deleteShop] nodejs.CastError: Cast to string failed for value "{}" at path "cid" for model "ShopList"
+    at model.Query.exec (C:\Users\Y20201118\Desktop\shop\20201209shopping\server\node_modules\_mongoose@5.11.6@mongoose\lib\query.js:4358:21)
+    at model.Query.Query.then (C:\Users\Y20201118\Desktop\shop\20201209shopping\server\node_modules\_mongoose@5.11.6@mongoose\lib\query.js:4450:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+messageFormat: undefined
+stringValue: "\"{}\""
+kind: "string"
+value: {}
+path: "cid"
+reason: null
+pid: 7668
+hostname: DESKTOP-I7UBTLB
+
+2020-12-12 21:13:37,103 ERROR 7668 [-/127.0.0.1/-/1ms POST /v1/deleteShop] nodejs.CastError: Cast to string failed for value "{}" at path "cid" for model "ShopList"
+    at model.Query.exec (C:\Users\Y20201118\Desktop\shop\20201209shopping\server\node_modules\_mongoose@5.11.6@mongoose\lib\query.js:4358:21)
+    at model.Query.Query.then (C:\Users\Y20201118\Desktop\shop\20201209shopping\server\node_modules\_mongoose@5.11.6@mongoose\lib\query.js:4450:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+messageFormat: undefined
+stringValue: "\"{}\""
+kind: "string"
+value: {}
+path: "cid"
+reason: null
+pid: 7668
+hostname: DESKTOP-I7UBTLB
+
+2020-12-12 21:13:56,125 ERROR 7668 [-/127.0.0.1/-/1ms POST /v1/deleteShop] nodejs.CastError: Cast to string failed for value "{}" at path "cid" for model "ShopList"
+    at model.Query.exec (C:\Users\Y20201118\Desktop\shop\20201209shopping\server\node_modules\_mongoose@5.11.6@mongoose\lib\query.js:4358:21)
+    at model.Query.Query.then (C:\Users\Y20201118\Desktop\shop\20201209shopping\server\node_modules\_mongoose@5.11.6@mongoose\lib\query.js:4450:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+messageFormat: undefined
+stringValue: "\"{}\""
+kind: "string"
+value: {}
+path: "cid"
+reason: null
+pid: 7668
+hostname: DESKTOP-I7UBTLB
+
+2020-12-12 21:14:19,128 ERROR 7668 [-/127.0.0.1/-/5ms POST /v1/deleteShop] nodejs.CastError: Cast to string failed for value "{ id: '5fd493e35e204a1df4074934' }" at path "cid" for model "ShopList"
+    at model.Query.exec (C:\Users\Y20201118\Desktop\shop\20201209shopping\server\node_modules\_mongoose@5.11.6@mongoose\lib\query.js:4358:21)
+    at model.Query.Query.then (C:\Users\Y20201118\Desktop\shop\20201209shopping\server\node_modules\_mongoose@5.11.6@mongoose\lib\query.js:4450:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+messageFormat: undefined
+stringValue: "\"{ id: '5fd493e35e204a1df4074934' }\""
+kind: "string"
+value: {"id":"5fd493e35e204a1df4074934"}
+path: "cid"
+reason: null
+pid: 7668
+hostname: DESKTOP-I7UBTLB
+
+2020-12-12 21:15:17,301 ERROR 7668 [-/127.0.0.1/-/1ms POST /v1/deleteShop] nodejs.CastError: Cast to string failed for value "{}" at path "cid" for model "ShopList"
+    at model.Query.exec (C:\Users\Y20201118\Desktop\shop\20201209shopping\server\node_modules\_mongoose@5.11.6@mongoose\lib\query.js:4358:21)
+    at model.Query.Query.then (C:\Users\Y20201118\Desktop\shop\20201209shopping\server\node_modules\_mongoose@5.11.6@mongoose\lib\query.js:4450:15)
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+messageFormat: undefined
+stringValue: "\"{}\""
+kind: "string"
+value: {}
+path: "cid"
+reason: null
+pid: 7668
+hostname: DESKTOP-I7UBTLB
+

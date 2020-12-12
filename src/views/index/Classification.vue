@@ -54,7 +54,7 @@ export default {
       showData: [], // 展示数据
       tabData: [], // 标签数据
       allData: [], // 所有数据
-      bs: null, // 滚动条对象
+      bs: null // 滚动条对象
     };
   },
   components: {},
@@ -62,7 +62,7 @@ export default {
     changeTab(id) {
       this.active = 0;
       // 点击改变tab
-      let d = this.allData.filter((item) => {
+      let d = this.allData.filter(item => {
         return item.mallCategoryId === id;
       });
       this.tabData = d[0].bxMallSubDto;
@@ -78,24 +78,23 @@ export default {
     },
     getClassification(id) {
       // 获取分类查询数据
-      console.log(`查询了一次`);
       this.$api
         .classification(id)
-        .then((res) => {
+        .then(res => {
           this.showData = res.dataList;
           let w = document.getElementsByClassName("wrapper2");
           // console.log(this.active);
           setTimeout(() => {
-            Array.from(w).map((item) => {
+            Array.from(w).map(item => {
               this.bs = new this.$Scroll(item, {
                 scrollX: true,
-                click: true,
+                click: true
               });
               this.bs.refresh();
             });
           }, 100);
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
@@ -103,22 +102,22 @@ export default {
       // 获取所有数据
       this.$api
         .getIndexData()
-        .then((res) => {
+        .then(res => {
           this.allData = res.data.category;
-          this.changeTab(`${this.activeKey + 1}`);
+          this.changeTab(`${parseInt(this.activeKey) + 1}`);
           // 获取展示数据
           // this.getClassification(
           //   this.allData[this.activeKey].bxMallSubDto[this.active].mallSubId
           // );
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
-    },
+    }
   },
   mounted() {
+    this.activeKey = this.$route.query.activeKey || 0;
     this.getAllData();
-    // this.getClassification(this.id);
   },
   computed: {},
   watch: {
@@ -130,7 +129,7 @@ export default {
         );
       },
       deep: true,
-      immediate: false,
+      immediate: false
     },
     // activeKey: {
     //   handler(v) {
@@ -144,13 +143,16 @@ export default {
     // },
     showData: {
       handler() {},
-      deep: true,
-    },
-  },
+      deep: true
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+.van-sidebar-item {
+  padding: 16px 0;
+}
 .wrapper2 {
   height: 100vh;
   .wrapperContent {
@@ -162,30 +164,45 @@ export default {
   justify-content: space-between;
   .van-sidebar {
     flex-shrink: 0;
-    width: 100px;
+    width: 22vw;
     background: rgb(241, 248, 255);
     height: 100vh;
   }
   .van-tabs {
     flex-grow: 1;
-    width: 70vw;
+    width: 78vw;
     .mallItem {
+      height: 90px;
       padding: 10px;
       box-sizing: border-box;
       display: flex;
       text-align: left;
+      border-bottom: 1px solid #eee;
       img {
         border: 1px solid #eee;
-        width: 80px;
+        width: 70px;
       }
       p {
         font-size: 14px;
-        margin: 10px 10px;
+        margin: 0px 10px 10px;
         text-align: left;
-        width:150px;
+        width: 180px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        color: rgb(255, 0, 0);
+      }
+      span {
+        display: inline-block;
+        margin: 10px;
+        margin-right: 5px;
+        font-size: 14px;
+        color: rgb(255, 0, 0);
+        font-weight: 900;
+      }
+      i {
+        font-size: 14px;
+        text-decoration: line-through;
       }
     }
   }

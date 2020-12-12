@@ -11,7 +11,7 @@
         </van-swipe>
         <!-- 商品分类 -->
         <ul class="goodsList">
-          <li v-for="item in category" :key="item.mallCategoryId">
+          <li v-for="item in category" :key="item.mallCategoryId" @click="$router.push({name:'Classification',query:{activeKey:item.mallCategoryId-1}})">
             <img :src="item.image" alt="" />
             {{ item.mallCategoryName }}
           </li>
@@ -33,7 +33,7 @@
                 <span>￥{{ item.price }}</span
                 ><i>￥{{ item.mallPrice }}</i
                 ><br />
-                <button class="shopping">
+                <button class="shopping" @click="ShoppingCart(item.goodsId)">
                   <van-icon name="shopping-cart-o" />
                 </button>
                 <button>查看详情</button>
@@ -87,6 +87,19 @@ export default {
     hotGoods,
   },
   methods: {
+    // 加入购物车
+    ShoppingCart(id){
+      this.$api.addShop({id}).then(res=>{
+        if(res.code===200){
+        // console.log(res);
+          this.$Toast.success(res.msg)
+        }
+      }).catch(err=>{
+        this.$Toast.error(err)
+        // console.log(err);
+      })
+      return false;
+    },
     // 遍历楼层数据并构造数组
     mapFloorData(floor, floorData) {
       Object.keys(floor).map((item) => {
@@ -134,7 +147,7 @@ export default {
       let bs2 = new this.$Scroll(".recommendDiv", {
         scrollX: true,
         scrollY: false,
-        click: true,
+        click: false,
       });
       this.indexBs = bs;
       this.recommendBs = bs2;
