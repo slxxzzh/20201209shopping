@@ -25,6 +25,7 @@
           >
             <div class="wrapper2">
               <div class="wrapperContent">
+                <van-empty v-if="showData.length===0" description="空空如也" />
                 <div v-for="item2 in showData" :key="item2.id" class="mallItem">
                   <div><img :src="item2.image" alt="" /></div>
                   <div>
@@ -83,6 +84,7 @@ export default {
         .then(res => {
           this.showData = res.dataList;
           let w = document.getElementsByClassName("wrapper2");
+          this.$Toast.clear();
           // console.log(this.active);
           setTimeout(() => {
             Array.from(w).map(item => {
@@ -116,6 +118,7 @@ export default {
     }
   },
   mounted() {
+    this.$Toast.loading();
     this.activeKey = this.$route.query.activeKey || 0;
     this.getAllData();
   },
@@ -123,6 +126,7 @@ export default {
   watch: {
     active: {
       handler(v) {
+        this.$Toast.loading();
         // 获取展示数据
         this.getClassification(
           this.allData[this.activeKey].bxMallSubDto[this.active].mallSubId
@@ -131,16 +135,17 @@ export default {
       deep: true,
       immediate: false
     },
-    // activeKey: {
-    //   handler(v) {
-    //     // 获取展示数据
-    //     this.getClassification(
-    //       this.allData[this.activeKey].bxMallSubDto[this.active].mallSubId
-    //     );
-    //   },
-    //   deep: true,
-    //   immediate: false,
-    // },
+    activeKey: {
+      handler(v) {
+        this.$Toast.loading();
+        // 获取展示数据
+        // this.getClassification(
+        //   this.allData[this.activeKey].bxMallSubDto[this.active].mallSubId
+        // );
+      },
+      deep: true,
+      immediate: false
+    },
     showData: {
       handler() {},
       deep: true

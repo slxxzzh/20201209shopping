@@ -2303,3 +2303,11 @@ reason: null
 pid: 7668
 hostname: DESKTOP-I7UBTLB
 
+2020-12-13 18:45:34,594 ERROR 15124 nodejs.ClusterClientNoResponseError: client no response in 1265726ms exceeding maxIdleTime 60000ms, maybe the connection is close on other side.
+    at Timeout._onTimeout (C:\Users\Y20201118\Desktop\shop\20201209shopping\server\node_modules\_cluster-client@3.0.1@cluster-client\lib\leader.js:77:23)
+    at listOnTimeout (internal/timers.js:531:17)
+    at processTimers (internal/timers.js:475:7)
+name: "ClusterClientNoResponseError"
+pid: 15124
+hostname: DESKTOP-I7UBTLB
+

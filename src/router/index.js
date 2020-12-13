@@ -49,6 +49,13 @@ const routes = [
     meta: {
       title: "登录/注册"
     }
+  },{
+    path: '/shopItem',
+    name: 'shopItem',
+    component: () => import(/* webpackChunkName: "about" */ '../views/shopItem.vue'),
+    meta: {
+      title: "商品详情"
+    }
   }
 ]
 

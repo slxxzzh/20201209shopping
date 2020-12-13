@@ -11,7 +11,16 @@
         </van-swipe>
         <!-- 商品分类 -->
         <ul class="goodsList">
-          <li v-for="item in category" :key="item.mallCategoryId" @click="$router.push({name:'Classification',query:{activeKey:item.mallCategoryId-1}})">
+          <li
+            v-for="item in category"
+            :key="item.mallCategoryId"
+            @click="
+              $router.push({
+                name: 'Classification',
+                query: { activeKey: item.mallCategoryId - 1 }
+              })
+            "
+          >
             <img :src="item.image" alt="" />
             {{ item.mallCategoryName }}
           </li>
@@ -36,7 +45,7 @@
                 <button class="shopping" @click="ShoppingCart(item.goodsId)">
                   <van-icon name="shopping-cart-o" />
                 </button>
-                <button>查看详情</button>
+                <button @click="pushGoods(item.goodsId)">查看详情</button>
               </div>
             </div>
           </div>
@@ -79,45 +88,78 @@ export default {
       recommend: [], // 横向滚动的数据
       floorData: [], // 楼层数据
       hotGoodsData: [], // 热门商品数据
+      count: 0,
+      isLoading: false
     };
   },
   components: {
     Sheader,
     floor,
-    hotGoods,
+    hotGoods
   },
   methods: {
-    // 加入购物车
-    ShoppingCart(id){
-      this.$api.addShop({id}).then(res=>{
-        if(res.code===200){
-        // console.log(res);
-          this.$Toast.success(res.msg)
-        }
-      }).catch(err=>{
-        this.$Toast.error(err)
-        // console.log(err);
+    // 商品详情
+    pushGoods(id){
+      this.$router.push({
+        name:"shopItem",
+        query:{goodId:id}
       })
+    },
+    onRefresh() {
+      setTimeout(() => {
+        this.$Toast("刷新成功");
+        this.isLoading = false;
+        this.count++;
+      }, 1000);
+    },
+
+    // 加入购物车
+    ShoppingCart(id) {
+      this.$Toast.loading();
+      this.$api
+        .addShop({ id })
+        .then(res => {
+          if (res.code === 200) {
+            this.$Toast.success(res.msg);
+            this.setShopItem();
+          }
+        })
+        .catch(err => {
+          this.$Toast.error(err);
+        });
       return false;
+    },
+    // 更新购物车数量
+    setShopItem() {
+      this.$api
+        .getCard()
+        .then(res => {
+          // 存vuex
+          this.$store.commit("set_ShopItem", res.shopList.length);
+          this.Toast.clear();
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     // 遍历楼层数据并构造数组
     mapFloorData(floor, floorData) {
-      Object.keys(floor).map((item) => {
+      Object.keys(floor).map(item => {
         this.floorData.unshift({
           floor: item.slice(item.length - 1),
           title: floorData.data.floorName[item],
-          data: floorData.data[item],
+          data: floorData.data[item]
         });
       });
       // console.log(this.floorData);
-    },
+    }
   },
   mounted() {
     //
 
     this.$api
       .getIndexData()
-      .then((res) => {
+      .then(res => {
         if (res.code === 200) {
           this.slides = res.data.slides;
           this.category = res.data.category;
@@ -133,28 +175,27 @@ export default {
           setTimeout(() => {
             this.indexBs.refresh();
           }, 1000);
-          // console.log(res.data);
         }
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
     this.$nextTick(() => {
       let bs = new this.$Scroll(".wrapper", {
         scrollX: true,
-        click: true,
+        click: true
       });
       let bs2 = new this.$Scroll(".recommendDiv", {
         scrollX: true,
         scrollY: false,
-        click: false,
+        click: false
       });
       this.indexBs = bs;
       this.recommendBs = bs2;
     });
   },
   computed: {},
-  watch: {},
+  watch: {}
 };
 </script>
 

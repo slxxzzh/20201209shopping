@@ -69,5 +69,12 @@ export default {
   // id: 商品id(数组)
   deleteShop(id){
     return http.post("deleteShop",id)
+  },
+  // 8.单个商品详情(get)
+  // /goods/one?id=${id}
+  // 参数:
+  // id:商品的id
+  getGoods(id){
+    return http.get(`/goods/one?id=${id}`);
   }
 };

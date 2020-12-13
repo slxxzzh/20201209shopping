@@ -31,26 +31,37 @@
         <van-button size="small" color="rgb(230,5,127)">去结算</van-button>
       </div>
       <van-checkbox-group v-model="result" ref="checkboxGroup">
-        <div class="shopItem" v-for="item in shopList" :key="item._id">
-          <van-checkbox
-            :name="item.cid"
-            shape="square"
-            checked-color="rgb(224,50,43)"
-          ></van-checkbox>
+        <div class="wrapper2">
           <div>
-            <img :src="item.image_path" alt="" />
-          </div>
-          <div>
-            <p>{{ item.name }}</p>
-            <span>￥{{ (item.present_price * item.count).toFixed(2) }}</span>
-            <van-stepper
-              disable-input
-              v-model="item.count"
-              async-change
-              theme="round"
-              @plus="stepperChange(item.count, item.cid, item.present_price)"
-              @minus="stepperChange(item.count, item.cid, item.present_price)"
-            />
+            <div class="shopItem" v-for="item in shopList" :key="item._id">
+              <van-checkbox
+                :name="item.cid"
+                shape="square"
+                checked-color="rgb(224,50,43)"
+              ></van-checkbox>
+              <div>
+                <img :src="item.image_path" alt="" />
+              </div>
+              <div>
+                <p>{{ item.name }}</p>
+                <span
+                  >￥{{ (item.present_price * item.count).toFixed(2) }}</span
+                >
+                <van-stepper
+                  disable-input
+                  v-model="item.count"
+                  async-change
+                  theme="round"
+                  @plus="
+                    stepperChange(item.count, item.cid, item.present_price)
+                  "
+                  @minus="
+                    stepperChange(item.count, item.cid, item.present_price)
+                  "
+                />
+              </div>
+            </div>
+            <van-empty v-if="shopList.length === 0" description="空空如也" />
           </div>
         </div>
       </van-checkbox-group>
@@ -59,6 +70,7 @@
 </template>
 
 <script>
+import { Dialog } from "vant";
 export default {
   name: "",
   props: {},
@@ -66,29 +78,55 @@ export default {
     return {
       result: [], // 选择框
       checkAllInput: false, // 全选
-      shopList: [] // 购物车数据
+      shopList: [], // 购物车数据
+      bs: null
     };
   },
   components: {},
   methods: {
-    // 删除商品
-    deleteShop() {
-      if (this.result.length === 0) {
-        return;
-      }
-      this.$Toast.loading();
-      // 动态
+    // 更新购物车数量
+    setShopItem() {
       this.$api
-        .deleteShop(Array.from(this.result))
+        .getCard()
         .then(res => {
-          this.$Toast.success("删除成功");
-          this.result = []
-          this.getCard()
+          // 存vuex
+          this.$store.commit("set_ShopItem", res.shopList.length);
         })
         .catch(err => {
           console.log(err);
-          this.$Toast.clear();
         });
+    },
+    // 删除商品
+
+    deleteShop() {
+      let _this = this;
+      if (this.result.length === 0) {
+        return;
+      } else {
+        Dialog.confirm({
+          title: "删除购物车商品",
+          message: "确认删除？",
+          beforeClose
+        }).catch(() => {});
+      }
+      function beforeClose(action, done) {
+        if (action === "confirm") {
+          _this.$api
+            .deleteShop(Array.from(_this.result))
+            .then(res => {
+              _this.$Toast.success("删除成功");
+              _this.result = [];
+              _this.setShopItem();
+              _this.getCard();
+              done();
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        } else {
+          done();
+        }
+      }
     },
     // 修改数量
     stepperChange(count, id, mallPrice) {
@@ -121,6 +159,10 @@ export default {
               this.result.push(item.cid);
             }
           });
+          this.$Toast.clear()
+          setTimeout(() => {
+            this.bs.refresh();
+          }, 0);
         })
         .catch(err => {
           console.log(err);
@@ -139,8 +181,9 @@ export default {
     }
   },
   mounted() {
+    this.$Toast.loading()
     this.$nextTick(() => {
-      let bs = new this.$Scroll(".wrapper", {
+      this.bs = new this.$Scroll(".wrapper2", {
         scrollX: true,
         click: true
       });
@@ -211,6 +254,10 @@ export default {
     margin-right: 10px;
   }
 }
+.wrapper2 {
+  height: 66vh;
+  overflow: hidden;
+}
 .shopItem {
   display: flex;
   padding: 10px 15px 10px;
@@ -218,6 +265,7 @@ export default {
   text-align: left;
   // line-height: 30px;
   img {
+    height: 70px;
     width: 70px;
     border: 1px solid #eee;
     margin-left: 10px;

@@ -27,3 +27,23 @@ html {
   position: relative;
   z-index: 99;
 }
+.sBack{
+  height:35px;
+  width:35px;
+  line-height: 35px;
+  border-radius: 20px;
+  display: inline-block;
+  background: rgb(0,0,0,0.4);
+  color:white;
+  position: fixed;
+  top:10px;
+  left:10px;
+  z-index: 9;
+  text-align: center;
+  .van-icon{
+    position: relative;
+    top:5px;
+    left:-1px;
+    font-size: 19px;
+  }
+}
