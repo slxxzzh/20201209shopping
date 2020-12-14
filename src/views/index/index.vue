@@ -125,7 +125,7 @@ export default {
           }
         })
         .catch(err => {
-          this.$Toast.error(err);
+          this.$Toast.fail(err);
         });
       return false;
     },

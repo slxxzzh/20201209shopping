@@ -37,10 +37,26 @@
         </van-tabs>
       </div>
       <van-goods-action>
-        <van-goods-action-icon icon="chat-o" text="客服" dot />
-        <van-goods-action-icon icon="cart-o" text="购物车" badge="5" />
-        <van-goods-action-icon icon="shop-o" text="店铺" badge="12" />
-        <van-goods-action-button type="warning" text="加入购物车" />
+        <van-goods-action-icon icon="chat-o" text="客服" />
+        <van-goods-action-icon
+          icon="cart-o"
+          text="购物车"
+          v-if="this.$store.state.shopItem === 0"
+          @click="toShopping"
+        />
+        <van-goods-action-icon
+          icon="cart-o"
+          text="购物车"
+          v-if="this.$store.state.shopItem !== 0"
+          @click="toShopping"
+          :badge="this.$store.state.shopItem"
+        />
+        <van-goods-action-icon icon="shop-o" text="店铺" />
+        <van-goods-action-button
+          type="warning"
+          text="加入购物车"
+          @click="ShoppingCart(goodsData.id)"
+        />
         <van-goods-action-button type="danger" text="立即购买" />
       </van-goods-action>
     </div>
@@ -60,7 +76,41 @@ export default {
   },
   components: {},
   methods: {
+    // 加入购物车
+    ShoppingCart(id) {
+      this.$Toast.loading();
+      this.$api
+        .addShop({ id })
+        .then(res => {
+          if (res.code === 200) {
+            this.$Toast.success(res.msg);
+            this.refreshShoppingCart()
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          // this.$Toast.fail(err);
+        });
+      return false;
+    },
+    refreshShoppingCart() {
+      // 刷新购物车商品数量
+      this.$api
+        .getCard()
+        .then(res => {
+          // 存vuex
+          this.$store.commit("set_ShopItem", res.shopList.length);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    toShopping() {
+      // 跳转购物车
+      this.$router.push({ name: "Shopping" });
+    },
     onClickLeft() {
+      // 返回
       history.go(-1);
     }
   },
@@ -74,6 +124,8 @@ export default {
         this.bs.refresh();
       }, 1000);
     });
+    this.refreshShoppingCart()
+    // 获取商品信息
     this.$api
       .getGoods(this.$route.query.goodId)
       .then(res => {
