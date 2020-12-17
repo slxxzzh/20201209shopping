@@ -2,9 +2,11 @@ body,
 html {
   height: 100%;
 }
+
 * {
   touch-action: none;
 }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -13,15 +15,18 @@ html {
   color: #2c3e50;
   height: 100%;
 }
+
 .wrapper {
   // height:100%;
   // overflow: hidden;
 }
+
 .shortInput {
   .van-cell__title {
     line-height: 47px;
   }
 }
+
 .classification {
   .van-tabs__wrap {
     border-bottom: 1px solid #eee;
@@ -43,6 +48,7 @@ html {
   left: 10px;
   z-index: 9;
   text-align: center;
+
   .van-icon {
     position: relative;
     top: 5px;
@@ -50,6 +56,7 @@ html {
     font-size: 19px;
   }
 }
+
 .goodMsg {
   .van-tabs--line {
     .van-tabs__wrap {
@@ -59,3 +66,30 @@ html {
   }
 }
 
+.orderSettlement {
+  .van-card {
+    .van-card__header{
+
+    }
+    .van-card__content{
+      min-height:30px;
+    }
+    .van-card__thumb{
+      height:70px ;
+      width: 70px ;
+    }
+    .van-image {
+      box-shadow: 0 0 3px #ccc;
+    }
+  }
+}
+.newAddress{
+  .van-address-edit__buttons{
+    padding-bottom: 0px;
+    .van-button{
+      border-radius: 0;
+      width:90vw;
+      margin: 0 auto;
+    }
+  }
+}

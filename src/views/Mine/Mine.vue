@@ -8,23 +8,53 @@
         @click-left="onClickLeft"
       />
       <div class="MineHeader">
-        <van-icon name="setting" @click="$router.push({name:'SetUser'})"/>
+        <van-icon name="setting" @click="$router.push({ name: 'SetUser' })" />
         <div style="height:1px"></div>
         <img src="../../assets/header.jpg" alt="" />
-        <span v-if="userInfo">欢迎您：{{userInfo.nickname}}</span>
+        <span v-if="userInfo">欢迎您：{{ userInfo.nickname }}</span>
         <a href="">退出登录</a>
       </div>
       <van-grid>
-        <van-grid-item icon="coupon-o" text="待付款" />
-        <van-grid-item icon="tosend" text="待发货" />
-        <van-grid-item icon="shop-o" text="待收货" />
-        <van-grid-item icon="comment-o" text="评价" />
-        <van-grid-item icon="sign" text="已完成" />
+        <van-grid-item icon="coupon-o" text="待付款" v-if="order[0] === 0" />
+        <van-grid-item
+          icon="coupon-o"
+          text="待付款"
+          v-if="order[0] !== 0"
+          :badge="order[0]"
+        />
+        <van-grid-item icon="tosend" text="待发货" v-if="order[1] === 0" />
+        <van-grid-item
+          icon="tosend"
+          text="待发货"
+          v-if="order[1] !== 0"
+          :badge="order[1]"
+        />
+        <van-grid-item icon="shop-o" text="待收货" v-if="order[2] === 0" />
+        <van-grid-item
+          icon="shop-o"
+          text="待收货"
+          v-if="order[2] !== 0"
+          :badge="order[2]"
+        />
+        <van-grid-item icon="comment-o" text="评价" v-if="order[3] === 0" />
+        <van-grid-item
+          icon="comment-o"
+          text="评价"
+          v-if="order[3] !== 0"
+          :badge="order[3]"
+        />
+        <van-grid-item icon="sign" text="已完成" v-if="order[4] === 0" />
+        <van-grid-item
+          icon="sign"
+          text="已完成"
+          v-if="order[4] !== 0"
+          :badge="order[4]"
+        />
       </van-grid>
-      <van-cell title="全部订单" is-link icon="records"/>
-      <van-cell title="收藏商品" is-link icon="like-o" to="/collection"/>
-      <van-cell title="地址管理" is-link icon="wap-home-o"/>
-      <van-cell title="最近浏览" is-link icon="eye-o"/>
+      <van-cell title="全部订单" is-link icon="records" to="/orderNum" />
+      <van-cell title="收藏商品" is-link icon="like-o" to="/collection" />
+      <van-cell title="地址管理" is-link icon="wap-home-o" to="/address" />
+      <van-cell title="最近浏览" is-link icon="eye-o" />
     </div>
   </div>
 </template>
@@ -35,7 +65,8 @@ export default {
   props: {},
   data() {
     return {
-      userInfo:null // 用户信息
+      userInfo: null, // 用户信息
+      order: [] // 订单数量
     };
   },
   components: {},
@@ -44,16 +75,29 @@ export default {
     queryUser() {
       this.$api
         .queryUser()
-        .then((res) => {
-          this.userInfo = res.userInfo
+        .then(res => {
+          this.userInfo = res.userInfo;
         })
-        .catch((err) => {
+        .catch(err => {
           console.log(err);
         });
     },
+    // 查询订单数量
+    getOrder() {
+      this.$api
+        .myOrder()
+        .then(res => {
+          console.log(res);
+          this.order = res.numList;
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   },
   mounted() {
-    this.queryUser()
+    this.queryUser();
+    this.getOrder();
     this.$nextTick(() => {
       let bs = new this.$Scroll(".wrapper", {
         scrollX: true,
@@ -67,12 +111,12 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.van-grid{
-  .van-grid-item{
+.van-grid {
+  .van-grid-item {
     flex-basis: 20% !important;
   }
 }
-.van-cell{
+.van-cell {
   text-align: left;
 }
 .MineHeader {

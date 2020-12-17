@@ -29,7 +29,7 @@ const routes = [
     }, {
       path: 'Shopping',
       name: 'Shopping',
-      component: () => import(/* webpackChunkName: "about" */ '../views/index/Shopping.vue'),
+      component: () => import(/* webpackChunkName: "about" */ '../views/Shopping/Shopping.vue'),
       meta: {
         title: "购物车"
       }
@@ -71,7 +71,38 @@ const routes = [
     meta: {
       title: "商品详情"
     }
-  }
+  },{
+    path: '/orderSettlement',
+    name: 'orderSettlement',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Shopping/orderSettlement.vue'),
+    meta: {
+      title: "订单结算"
+    }
+  },{
+    path: '/address',
+    name: 'address',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Shopping/address.vue'),
+    meta: {
+      title: "收货地址"
+    }
+  },{
+    path: '/newAddress',
+    name: 'newAddress',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Shopping/newAddress.vue'),
+    meta: {
+      title: "新增地址"
+    }
+  },{
+    path: '/orderNum',
+    name: 'orderNum',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Mine/orderNum.vue'),
+    meta: {
+      title: "我的订单"
+    }
+  },
+  
+  
+  
 ]
 
 const router = new VueRouter({

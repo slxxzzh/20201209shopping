@@ -1209,3 +1209,20 @@
 2020-12-15 13:51:35,886 INFO 10412 [egg-mongoose] instance[0] start successfully
 2020-12-15 13:51:35,894 INFO 10412 [egg-watcher:application] watcher start success
 2020-12-15 13:51:35,944 INFO 10412 [egg:core] dump config after ready, 41ms
+2020-12-17 13:51:46,945 INFO 10392 [egg:logger] init all loggers with options: {"dir":"C:\\Users\\Y20201118\\Desktop\\shopping\\20201209shopping\\server\\logs\\server","encoding":"utf8","env":"local","level":"INFO","consoleLevel":"INFO","disableConsoleAfterReady":false,"outputJSON":false,"buffer":true,"appLogName":"server-web.log","coreLogName":"egg-web.log","agentLogName":"egg-agent.log","errorLogName":"common-error.log","coreLogger":{"consoleLevel":"WARN"},"allowDebugAtProd":false,"type":"application"}
+2020-12-17 13:51:46,987 INFO 10392 [egg-multipart] stream mode enable
+2020-12-17 13:51:47,448 INFO 10392 [egg-mongoose] connecting mongodb://127.0.0.1/shoppingMall
+2020-12-17 13:51:47,904 INFO 10392 [egg-static] starting static serve /public/ -> C:\Users\Y20201118\Desktop\shopping\20201209shopping\server\app\public
+2020-12-17 13:51:47,909 INFO 10392 [egg-security] use methodnoallow middleware
+2020-12-17 13:51:47,910 INFO 10392 [egg-security] use noopen middleware
+2020-12-17 13:51:47,912 INFO 10392 [egg-security] use nosniff middleware
+2020-12-17 13:51:47,913 INFO 10392 [egg-security] use xssProtection middleware
+2020-12-17 13:51:47,914 INFO 10392 [egg-security] use xframe middleware
+2020-12-17 13:51:47,915 INFO 10392 [egg-security] use dta middleware
+2020-12-17 13:51:47,915 INFO 10392 [egg-security] compose 6 middlewares into one security middleware
+2020-12-17 13:51:47,952 INFO 10392 [egg:core] dump config after load, 19ms
+2020-12-17 13:51:47,955 INFO 10392 [egg-mongoose] starting...
+2020-12-17 13:51:48,050 INFO 10392 [egg-watcher:application] watcher start success
+2020-12-17 13:51:48,057 INFO 10392 [egg-mongoose] mongodb://127.0.0.1/shoppingMall connected successfully
+2020-12-17 13:51:48,077 INFO 10392 [egg-mongoose] instance[0] start successfully
+2020-12-17 13:51:48,095 INFO 10392 [egg:core] dump config after ready, 14ms

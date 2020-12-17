@@ -28,7 +28,7 @@
         <van-button size="small" color="rgb(230,5,127)" @click="deleteShop"
           >删除</van-button
         >
-        <van-button size="small" color="rgb(230,5,127)">去结算</van-button>
+        <van-button size="small" color="rgb(230,5,127)" @click="orderSettlement()">去结算</van-button>
       </div>
       <van-checkbox-group v-model="result" ref="checkboxGroup">
         <div class="wrapper2">
@@ -84,6 +84,20 @@ export default {
   },
   components: {},
   methods: {
+    // 订单结算
+    orderSettlement(){
+      let shopArr = this.shopList.filter(item=>{
+        return item.check
+      })
+      if(shopArr.length===0){
+        this.$Toast("还没选择商品")
+      }else{
+      localStorage.setItem("shopList",JSON.stringify(shopArr))
+        this.$router.push({
+          name:"orderSettlement",
+        })
+      }
+    },
     // 更新购物车数量
     setShopItem() {
       this.$api
